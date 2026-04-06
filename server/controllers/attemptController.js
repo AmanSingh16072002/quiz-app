@@ -58,6 +58,10 @@ exports.submitAttempt = async (req, res) => {
       const response = attempt.responses.find(
         r => r.questionId.toString() === q._id.toString()
       );
+      // ADD THIS LOG
+      console.log("Q:", q._id, "R:", response?.questionId, "Match:", !!response);
+      console.log("Selected:", response?.selectedOption, "Correct:", q.correctOption);
+
 
       if (response && response.selectedOption === q.correctOption) {
         score += q.marks;

@@ -1,10 +1,7 @@
 const mongoose = require("mongoose");
 
 const responseSchema = new mongoose.Schema({
-  questionId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Question"
-  },
+  questionId: mongoose.Schema.Types.ObjectId, // removed ref:"Question"
   selectedOption: Number
 });
 
