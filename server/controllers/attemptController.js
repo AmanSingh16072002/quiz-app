@@ -64,7 +64,7 @@ exports.submitAttempt = async (req, res) => {
 
 
       if (response && response.selectedOption === q.correctOption) {
-        score += q.marks;
+        score += (q.marks || 1);
       }
     });
 
