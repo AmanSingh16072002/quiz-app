@@ -50,7 +50,7 @@ exports.submitAttempt = async (req, res) => {
     const { attemptId } = req.body;
 
     const attempt = await Attempt.findById(attemptId);
-    const quiz = await Quiz.findById(attempt.quizId).populate("questions");
+    const quiz = await Quiz.findById(attempt.quizId); // removed .populate()
 
     let score = 0;
 
@@ -66,7 +66,6 @@ exports.submitAttempt = async (req, res) => {
 
     attempt.score = score;
     attempt.status = "completed";
-
     await attempt.save();
 
     res.json({ score });
@@ -81,7 +80,7 @@ exports.getReport = async (req, res) => {
     const { attemptId } = req.params;
 
     const attempt = await Attempt.findById(attemptId);
-    const quiz = await Quiz.findById(attempt.quizId).populate("questions");
+    const quiz = await Quiz.findById(attempt.quizId); // removed .populate()
 
     const report = quiz.questions.map(q => {
       const response = attempt.responses.find(
@@ -97,10 +96,7 @@ exports.getReport = async (req, res) => {
       };
     });
 
-    res.json({
-      score: attempt.score,
-      report
-    });
+    res.json({ score: attempt.score, report });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
