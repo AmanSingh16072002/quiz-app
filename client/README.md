@@ -44,3 +44,6 @@ Backend: (your render link)
 - Timer sync backend
 - Multiple users support
 - Better UI/UX
+
+Frontend: https://quiz-rfyb1eflm-aman-singhs-projects-34fb5126.vercel.app  
+Backend: https://quiz-app-uw5i.onrender.com

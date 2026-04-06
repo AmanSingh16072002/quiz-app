@@ -8,9 +8,21 @@ export default function Login() {
   const nav = useNavigate();
 
   const login = async () => {
-    const res = await API.post("/auth/login", { email, password });
-    localStorage.setItem("user", JSON.stringify(res.data.user));
-    nav("/dashboard");
+    try {
+      const res = await API.post("/auth/login", { email, password });
+      localStorage.setItem("token", res.data.token);
+      localStorage.setItem("user", JSON.stringify(res.data.user));
+
+      // role based redirect
+      const role = res.data.user.role;
+      if (role === "cms" || role === "admin") {
+        nav("/cms-dashboard");
+      } else {
+        nav("/dashboard");
+      }
+    } catch (err) {
+      alert(err.response?.data?.msg || "Login failed");
+    }
   };
 
   return (

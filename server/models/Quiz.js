@@ -6,7 +6,7 @@ const quizSchema = new mongoose.Schema({
     required: true
   },
   duration: {
-    type: Number, // in minutes
+    type: Number,
     required: true
   },
   totalMarks: {
@@ -15,8 +15,10 @@ const quizSchema = new mongoose.Schema({
   },
   questions: [
     {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Question"
+      question: String,
+      options: [String],
+      correctOption: Number,
+      marks: Number
     }
   ]
 }, { timestamps: true });

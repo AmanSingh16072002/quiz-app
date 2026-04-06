@@ -21,7 +21,7 @@ exports.createQuiz = async (req, res) => {
 // GET ALL QUIZZES
 exports.getQuizzes = async (req, res) => {
   try {
-    const quizzes = await Quiz.find().populate("questions");
+    const quizzes = await Quiz.find();
     res.json(quizzes);
   } catch (err) {
     res.status(500).json({ error: err.message });
